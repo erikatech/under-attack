@@ -13,14 +13,9 @@
 	angular.module('under-attack', [
 		'ngResource',
 		'ngAria',
-		 'ngMaterial',
-		'ngMdIcons',
-		'ngMessages',
-		'ngCookies',
-		'ngAnimate',
-		'ngSanitize',
+		'ngMaterial',
 		'ui.router',
-		'home',
+		'admin'
 	]);
 
 })();
