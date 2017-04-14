@@ -15,7 +15,8 @@
 		'ngAria',
 		'ngMaterial',
 		'ui.router',
-		'admin'
+		'admin',
+		'auth'
 	]);
 
 })();
