@@ -8,5 +8,9 @@
 	<scan>
 		<exclude name="com.google.common.util.concurrent.MoreExecutors$SameThreadExecutorService"/>
 	</scan>
+
+	<decorators>
+		<class>br.com.caelum.vraptor.jpa.TransactionDecorator</class>
+	</decorators>
 	
 </beans>
