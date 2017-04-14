@@ -1,4 +1,4 @@
-package br.com.caelum.vraptor.util;
+package br.edu.ifam.underattack.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,7 +8,7 @@ public class JPAUtil {
 
 	public static EntityManager criaEntityManager() {
 		EntityManagerFactory factory = Persistence
-				.createEntityManagerFactory("vraptorprodutos");
+				.createEntityManagerFactory("default");
 		return factory.createEntityManager();
 	}
 }
