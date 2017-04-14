@@ -123,7 +123,7 @@ public class TestadoresController {
 			this.result.use(Results.http()).body("errado");
 
 		}
-		// Armazeno os dados na sessão
+		// Armazeno os dados na sessï¿½o
 		AlunoEncontraValorDeEntrada alunoValorDeEntrada = new AlunoEncontraValorDeEntrada();
 		alunoValorDeEntrada.setAluno(alunoDesafio.getAluno());
 		alunoValorDeEntrada.setValorDeEntrada(valorEscolhido);
@@ -132,7 +132,7 @@ public class TestadoresController {
 	}
 
 	/**
-	 * Atualiza os valores de entrada e pontuação do aluno no banco
+	 * Atualiza os valores de entrada e pontuaï¿½ï¿½o do aluno no banco
 	 * */
 	public void salvarValoresEntrada() {
 		List<AlunoEncontraValorDeEntrada> valoresEncontrados = this.alunoInfo
@@ -176,7 +176,7 @@ public class TestadoresController {
 	}
 
 	/**
-	 * Valida as classes de equivalencia que foram enviadas na requisição
+	 * Valida as classes de equivalencia que foram enviadas na requisiï¿½ï¿½o
 	 * 
 	 * */
 	@Get("/validaClasse")
@@ -276,9 +276,7 @@ public class TestadoresController {
 		Ingrediente ingrediente = this.armarioRepository.consulta(Long
 				.valueOf(idIngrediente));
 
-		String imagemColorida = ingrediente.getImagemColorida();
-
-		this.result.use(Results.json()).from(imagemColorida).serialize();
+		this.result.use(Results.json()).from(ingrediente.getNomeImagem()).serialize();
 	}
 
 	/**
@@ -309,7 +307,7 @@ public class TestadoresController {
 	}
 
 	/**
-	 * Armazena as informações no banco
+	 * Armazena as informaï¿½ï¿½es no banco
 	 * 
 	 * */
 	@Post("/finaliza")
@@ -329,9 +327,6 @@ public class TestadoresController {
 							.getId()
 							.equals(classe.getClasseEquivalencia()
 									.getIngrediente().getId())) {
-						pocaoIngrediente.setImagemSelecionada(classe
-								.getClasseEquivalencia().getIngrediente()
-								.getImagemColoridaBytes());
 						pocaoIngrediente
 								.setSituacaoIngrediente(SituacaoIngrediente.ENCONTRADO);
 						this.armarioRepository

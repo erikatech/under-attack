@@ -87,7 +87,7 @@ public class BaseController {
 		Fase faseSalaTestadores = new Fase();
 		faseSalaTestadores.setTitulo("Sala dos Testadores");
 		faseSalaTestadores.setDesafios(desafios);
-		faseSalaTestadores.setImagem(buildImagemBytes("C:\\Users\\Erikaa\\Dropbox\\TCC-1\\Material\\Documentos Monografia\\Modelagem II\\gambster.png"));
+		faseSalaTestadores.setNomeImagem("gambster");
 		
 		Objetivo encontrarTodosItens = new Objetivo();
 		encontrarTodosItens.setDescricao("Encontrar os itens da poção");
@@ -108,7 +108,7 @@ public class BaseController {
 		// Configurando sala dos desenvolvedores
 		Fase faseSalaDesenvolvedores = new Fase();
 		faseSalaDesenvolvedores.setTitulo("Sala dos Desenvolvedores");
-		faseSalaDesenvolvedores.setImagem(buildImagemBytes("C:\\Users\\Erikaa\\Dropbox\\TCC-1\\Material\\Documentos Monografia\\Modelagem II\\zombie-hand.png"));
+		faseSalaDesenvolvedores.setNomeImagem("zombie-hand");
 		
 		Objetivo preencherMaquinaComTestes = new Objetivo();
 		preencherMaquinaComTestes.setDescricao("Energizar a máquina com testes");

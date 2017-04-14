@@ -1,68 +1,60 @@
 package br.edu.ifam.underattack.controller;
 
-import javax.inject.Inject;
-import javax.validation.Valid;
-
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.I18nMessage;
 import br.com.caelum.vraptor.validator.Validator;
+import br.edu.ifam.underattack.dao.ProfessorDao;
 import br.edu.ifam.underattack.interceptor.annotations.BugsEncontrados;
 import br.edu.ifam.underattack.interceptor.annotations.Public;
 import br.edu.ifam.underattack.model.Aluno;
-import br.edu.ifam.underattack.model.repository.FrascoRepository;
-import br.edu.ifam.underattack.model.repository.TurmaRepository;
+import br.edu.ifam.underattack.model.Professor;
+import br.edu.ifam.underattack.model.repository.ProfessorRepository;
+
+import javax.inject.Inject;
+import javax.persistence.NoResultException;
 
 @Controller
-public class AlunoController {
+public class ProfessorController {
 
-	private TurmaRepository turma;
+	private final Result result;
 
-	private FrascoRepository frasco;
+	private ProfessorDao dao;
 
-	private Result result;
-
-	private Validator validator;
+	private final Validator validator;
 
 	@Inject
-	public AlunoController(TurmaRepository turma, FrascoRepository frasco, Result result, Validator validator) {
-		this.turma = turma;
-		this.frasco = frasco;
+	public ProfessorController(ProfessorDao dao, Result result, Validator validator) {
+		this.dao = dao;
 		this.result = result;
 		this.validator = validator;
 	}
 
-	/** Apenas para o CDI */
-	AlunoController() {
+	/** Apenas para o CDI
+	 * */
+	ProfessorController() {
+		this(null, null, null);
 	}
 
 	@Public
 	@Post
-	public void adiciona(@Valid Aluno aluno) {
-		
-		validator.addIf(turma.existeAlunoComLogin(aluno.getLogin()), new I18nMessage("aluno.login", "login_indisponivel"));
-		
-		validator.addIf(turma.emailEmUtilizacao(aluno.getEmail()), new I18nMessage("aluno.email", "email.ja.cadastrado"));
-		
-		validator.onErrorRedirectTo(HomeController.class).cadastrar();
-
-		turma.adiciona(aluno);
-
-		frasco.associaIngredientes(aluno.getPocaoMagica());
-
-		result.include("sucesso", "Aluno cadastrado com sucesso");
-		
-		result.redirectTo(HomeController.class).login();
-	}
-	
-	@Get("/fases")
-	@BugsEncontrados
-	public void home() {
-		
+	public void adiciona(Professor professor) {
+		dao.adiciona(professor);
+		result.include("sucesso", "Professor cadastrado com sucesso");
 	}
 
+	@Public
+	@Post("/admin-login")
+	public void login(String login, String senha) throws NoResultException{
+		dao.consulta(login, senha);
+		/*validator.addIf(professorConsultado == null, new I18nMessage("login", "login.senha.invalidos"));
 
+		validator.onErrorUsePageOf(this).login();*/
+
+//		alunoInfo.login(alunoConsultado);
+//		result.redirectTo(this).home();
+	}
 
 }
