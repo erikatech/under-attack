@@ -10,10 +10,10 @@
 	*/
 
 	angular
-		.module('under-attack')
-		.controller('HomeCtrl', Home);
+		.module('admin')
+		.controller('AdminCtrl', Admin);
 
-	Home.$inject = ['homeService'];
+	Admin.$inject = [''];
 
 	/*
 	* recommend
@@ -21,12 +21,11 @@
 	* and bindable members up top.
 	*/
 
-	function Home(homeService) {
+	function Admin() {
 		/*jshint validthis: true */
 		var vm = this;
 		vm.title = "Hello, under-attack!";
 		vm.version = "1.0.0";
-		vm.listFeatures = homeService.getFeaturesList();
 
 	}
 

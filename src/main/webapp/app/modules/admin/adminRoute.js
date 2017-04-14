@@ -2,26 +2,18 @@
 
 	/**
 	* @ngdoc function
-	* @name app.route:HomeRoute
+	* @name app.route:AdminRoute
 	* @description
-	* # HomeRoute
-	* Route of the app
+	* # AdminRout
+	* Route for the admin module
 	*/
 
-angular.module('under-attack')
+angular.module('admin')
 	.config(['$stateProvider', function ($stateProvider) {
 		$stateProvider
-			
-			.state('home', {
-				url: '',
-				abstract: true,
-				templateUrl: 'app/modules/home/home.html',
-				controller: 'HomeCtrl',
-				controllerAs: 'vm'
-			})
-			.state('home.dashboard', {
-				url:'/dashboard',
-				templateUrl: 'app/modules/home/dashboard.html'
+			.state('admin', {
+				templateUrl: 'app/modules/admin/admin.html',
+				controller: 'AdminCtrl',
+				controllerAs: '$adminCtrl'
 			});
-			
 	}]);
