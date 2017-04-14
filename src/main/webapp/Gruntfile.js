@@ -110,13 +110,14 @@ module.exports = function (grunt) {
 		},
 
 		injector: {
-			options: {},
+			options: {
+				addRootSlash: false
+			},
 			dev: {
 				files: {
 					'index.html': [
-						// 'bower.json',
-						'app/app.js',
-						'app/app.config.js',
+						'app/under-attack.js',
+						'app/under-attack.config.js',
 						'app/**/*Module.js',
 						'app/**/*Route.js',
 						'app/**/*Ctrl.js',
