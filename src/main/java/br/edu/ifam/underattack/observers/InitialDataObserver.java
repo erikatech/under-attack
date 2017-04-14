@@ -27,17 +27,14 @@ public class InitialDataObserver {
 		TypedQuery<Ingrediente> query = em.createQuery(
 				"select i from Ingrediente i", Ingrediente.class);
 		List<Ingrediente> ingredientesToRemove = query.getResultList();
-		for(Ingrediente ingrediente : ingredientesToRemove){
-			em.getTransaction().begin();
-			em.remove(ingrediente);
-			em.getTransaction().commit();
-		}
 
-		List<Ingrediente> ingredientesToInsert = this.criaIngredientes();
-		for(Ingrediente ingrediente : ingredientesToInsert){
-			em.getTransaction().begin();
-			em.persist(ingrediente);
-			em.getTransaction().commit();
+		if(ingredientesToRemove.isEmpty()){
+			List<Ingrediente> ingredientesToInsert = this.criaIngredientes();
+			for(Ingrediente ingrediente : ingredientesToInsert){
+				em.getTransaction().begin();
+				em.persist(ingrediente);
+				em.getTransaction().commit();
+			}
 		}
 		em.close();
 	}
