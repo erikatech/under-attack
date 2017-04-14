@@ -6,12 +6,12 @@ import br.edu.ifam.underattack.model.AlunoEncontraValorDeEntrada;
 import br.edu.ifam.underattack.model.ValorDeEntrada;
 import br.edu.ifam.underattack.model.enums.TipoValorEntrada;
 
-public interface ValorDeEntradaDAO {
+public interface ValorDeEntradaDao {
 
 	List<ValorDeEntrada> listaPorTipo(Long idDocumento, TipoValorEntrada tipo);
 
 	Boolean valorDeEntradaEncontrado(Long idAluno,
-			Long idDocumento);
+                                     Long idDocumento);
 
 	void atualiza(AlunoEncontraValorDeEntrada valorDeEntrada);
 

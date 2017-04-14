@@ -15,14 +15,14 @@ import br.edu.ifam.underattack.model.Aluno;
  * @author Érika Silva
  */
 @Transactional
-public class DefaultAlunoDao implements AlunoDao {
+public class JPAAlunoDao implements AlunoDao {
 
 	private final EntityManager manager;
 
 	/**
 	 * @deprecated apenas para CDI
 	 */
-	DefaultAlunoDao() {
+	JPAAlunoDao() {
 		this(null);
 	}
 	
@@ -32,7 +32,7 @@ public class DefaultAlunoDao implements AlunoDao {
 	 * @param entityManager JPA's EntityManager.
 	 */
 	@Inject
-	public DefaultAlunoDao(EntityManager manager) {
+	public JPAAlunoDao(EntityManager manager) {
 		this.manager = manager;
 	}
 

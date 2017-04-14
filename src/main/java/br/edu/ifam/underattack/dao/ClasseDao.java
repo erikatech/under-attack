@@ -7,7 +7,7 @@ import br.edu.ifam.underattack.model.Classe;
  * 
  * @author Erika Silva
  */
-public interface ClasseDAO {
+public interface ClasseDao {
 
 	void adiciona(Classe classe);
 	

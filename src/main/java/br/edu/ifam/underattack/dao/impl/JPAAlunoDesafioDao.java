@@ -6,21 +6,21 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-import br.edu.ifam.underattack.dao.AlunoDesafioDAO;
+import br.edu.ifam.underattack.dao.AlunoDesafioDao;
 import br.edu.ifam.underattack.model.AlunoRealizaDesafio;
 import br.edu.ifam.underattack.model.enums.IndicadorFase;
 
 @Transactional
-public class JPAAlunoDesafioDAO implements AlunoDesafioDAO {
+public class JPAAlunoDesafioDao implements AlunoDesafioDao {
 
 	private final EntityManager manager;
 
 	@Inject
-	public JPAAlunoDesafioDAO(EntityManager manager) {
+	public JPAAlunoDesafioDao(EntityManager manager) {
 		this.manager = manager;
 	}
 
-	JPAAlunoDesafioDAO() {
+	JPAAlunoDesafioDao() {
 		this(null);
 	}
 

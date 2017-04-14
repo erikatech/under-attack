@@ -4,20 +4,20 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
-import br.edu.ifam.underattack.dao.ClasseDAO;
+import br.edu.ifam.underattack.dao.ClasseDao;
 import br.edu.ifam.underattack.model.Classe;
 
 @Transactional
-public class JPAClasseDAO implements ClasseDAO {
+public class JPAClasseDao implements ClasseDao {
 
 	private final EntityManager manager;
 
 	@Inject
-	public JPAClasseDAO(EntityManager manager) {
+	public JPAClasseDao(EntityManager manager) {
 		this.manager = manager;
 	}
 
-	JPAClasseDAO() {
+	JPAClasseDao() {
 		this(null);
 	}
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.edu.ifam.underattack.model.AlunoEncontraClasseEquivalencia;
 
-public interface AlunoClasseEquivalenciaDAO {
+public interface AlunoClasseEquivalenciaDao {
 
 	void associa(AlunoEncontraClasseEquivalencia alunoEncontraClasseEquivalencia);
 	

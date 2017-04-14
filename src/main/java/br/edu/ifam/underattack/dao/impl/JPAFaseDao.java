@@ -12,16 +12,16 @@ import br.edu.ifam.underattack.model.Fase;
 import br.edu.ifam.underattack.model.Objetivo;
 
 @Transactional
-public class JPAFaseDAO implements FaseDao {
+public class JPAFaseDao implements FaseDao {
 
 	private final EntityManager manager;
 
 	@Inject
-	public JPAFaseDAO(EntityManager manager) {
+	public JPAFaseDao(EntityManager manager) {
 		this.manager = manager;
 	}
 
-	JPAFaseDAO() {
+	JPAFaseDao() {
 		this(null);
 	}
 

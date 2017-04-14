@@ -7,21 +7,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-import br.edu.ifam.underattack.dao.AlunoClasseEquivalenciaDAO;
+import br.edu.ifam.underattack.dao.AlunoClasseEquivalenciaDao;
 import br.edu.ifam.underattack.model.AlunoEncontraClasseEquivalencia;
 
 @Transactional
-public class JPAAlunoClasseEquivalenciaDAO implements
-		AlunoClasseEquivalenciaDAO {
+public class JPAAlunoClasseEquivalenciaDao implements
+        AlunoClasseEquivalenciaDao {
 
 	private final EntityManager manager;
 
 	@Inject
-	public JPAAlunoClasseEquivalenciaDAO(EntityManager manager) {
+	public JPAAlunoClasseEquivalenciaDao(EntityManager manager) {
 		this.manager = manager;
 	}
 
-	JPAAlunoClasseEquivalenciaDAO() {
+	JPAAlunoClasseEquivalenciaDao() {
 		this(null);
 	}
 

@@ -4,20 +4,20 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
-import br.edu.ifam.underattack.dao.PocaoMagicaDAO;
+import br.edu.ifam.underattack.dao.PocaoMagicaDao;
 import br.edu.ifam.underattack.model.PocaoMagica;
 
 @Transactional
-public class JPAPocaoMagicaDAO implements PocaoMagicaDAO {
+public class JPAPocaoMagicaDao implements PocaoMagicaDao {
 
 	private final EntityManager manager;
 
 	@Inject
-	public JPAPocaoMagicaDAO(EntityManager manager) {
+	public JPAPocaoMagicaDao(EntityManager manager) {
 		this.manager = manager;
 	}
 
-	JPAPocaoMagicaDAO() {
+	JPAPocaoMagicaDao() {
 		this(null);
 	}
 

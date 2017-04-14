@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.edu.ifam.underattack.model.AlunoParticipaFase;
 
-public interface AlunoFaseDAO {
+public interface AlunoFaseDao {
 
 	void adiciona(AlunoParticipaFase alunoParticipaFase);
 	

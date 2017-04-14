@@ -12,33 +12,33 @@ import br.edu.ifam.underattack.model.Aluno;
 public interface AlunoDao {
 
 	/**
-	 * Cadastra um usuário na base de dados
-	 * @param o aluno que será cadastrado
-	 * 
+	 * Cadastra um usuï¿½rio na base de dados
+	 * @param aluno que serï¿½ cadastrado
+	 *
 	 */
 	void adiciona(Aluno aluno);
 
 	/**
-	 * Atualiza um usuário na base de dados
-	 * @param o aluno que será atualizado
-	 * 
+	 * Atualiza um usuï¿½rio na base de dados
+	 * @param aluno que serï¿½ atualizado
+	 *
 	 */
 	void atualiza(Aluno aluno);
-	
+
 	/**
 	 * Verifica se existe um aluno com o login informado
 	 *
-	 * @return true, se já existe um aluno com o login informado
+	 * @return true, se jï¿½ existe um aluno com o login informado
 	 */
 	boolean existeAlunoComLogin(String login);
-	
+
 	/**
-	 * Verifica se existe já existe o e-mail informado em utilização
+	 * Verifica se existe jï¿½ existe o e-mail informado em utilizaï¿½ï¿½o
 	 *
-	 * @return true, se já existe um email em utilização
+	 * @return true, se jï¿½ existe um email em utilizaï¿½ï¿½o
 	 */
 	boolean emailEmUtilizacao(String email);
-	
+
 	/**
 	 * Consulta um aluno por identificador
 	 *
@@ -50,7 +50,7 @@ public interface AlunoDao {
 	 * Consulta um aluno por identificador (login/email) ou senha
 	 *
 	 * @return aluno encontrado
-	 * @throws HibernateException, se existir mais de um usuário
+	 * @throws HibernateException, se existir mais de um usuï¿½rio
 	 */
 	Aluno consulta(String identificador, String senha);
 

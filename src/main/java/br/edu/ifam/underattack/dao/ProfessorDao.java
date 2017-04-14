@@ -1,57 +1,45 @@
 package br.edu.ifam.underattack.dao;
 
+import br.edu.ifam.underattack.model.Aluno;
+import br.edu.ifam.underattack.model.Professor;
 import org.hibernate.HibernateException;
 
-import br.edu.ifam.underattack.model.Aluno;
+import javax.persistence.NoResultException;
 
 /**
  * Data Access Object of Aluno entity.
  * 
  * @author Erika Silva
  */
-public interface AlunoDao {
+public interface ProfessorDao {
 
 	/**
-	 * Cadastra um usu�rio na base de dados
-	 * @param aluno que ser� cadastrado
+	 * Cadastra um professor na base de dados
+	 * @param professor que sera cadastrado
 	 *
 	 */
-	void adiciona(Aluno aluno);
+	void adiciona(Professor professor);
 
 	/**
-	 * Atualiza um usu�rio na base de dados
-	 * @param aluno que ser� atualizado
+	 * Atualiza um professor na base de dados
+	 * @param professor que sera atualizado
 	 *
 	 */
-	void atualiza(Aluno aluno);
+	void atualiza(Professor professor);
+
 
 	/**
-	 * Verifica se existe um aluno com o login informado
+	 * Consulta um professor por identificador
 	 *
-	 * @return true, se j� existe um aluno com o login informado
+	 * @return o professor encontrado
 	 */
-	boolean existeAlunoComLogin(String login);
+	Professor consulta(Long id);
 
 	/**
-	 * Verifica se existe j� existe o e-mail informado em utiliza��o
-	 *
-	 * @return true, se j� existe um email em utiliza��o
+	 * Consulta pra realizar login
+	 * @param login
+	 * @param senha
+	 * @return
 	 */
-	boolean emailEmUtilizacao(String email);
-
-	/**
-	 * Consulta um aluno por identificador
-	 *
-	 * @return o aluno encontrado
-	 */
-	Aluno consulta(Long id);
-
-	/**
-	 * Consulta um aluno por identificador (login/email) ou senha
-	 *
-	 * @return aluno encontrado
-	 * @throws HibernateException, se existir mais de um usu�rio
-	 */
-	Aluno consulta(String identificador, String senha);
-
+	Professor consulta(String login, String senha) throws NoResultException;
 }

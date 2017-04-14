@@ -7,20 +7,20 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-import br.edu.ifam.underattack.dao.DesafioDAO;
+import br.edu.ifam.underattack.dao.DesafioDao;
 import br.edu.ifam.underattack.model.Desafio;
 
 @Transactional
-public class JPADesafioDAO implements DesafioDAO {
+public class JPADesafioDao implements DesafioDao {
 
 	private final EntityManager manager;
 
 	@Inject
-	public JPADesafioDAO(EntityManager manager) {
+	public JPADesafioDao(EntityManager manager) {
 		this.manager = manager;
 	}
 
-	JPADesafioDAO() {
+	JPADesafioDao() {
 		this(null);
 	}
 

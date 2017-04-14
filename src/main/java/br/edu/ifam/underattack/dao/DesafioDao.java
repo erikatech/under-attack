@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.edu.ifam.underattack.model.Desafio;
 
-public interface DesafioDAO {
+public interface DesafioDao {
 
 	List<Desafio> listaTodos();
 	

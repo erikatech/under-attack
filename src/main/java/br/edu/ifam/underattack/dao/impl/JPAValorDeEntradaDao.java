@@ -7,22 +7,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-import br.edu.ifam.underattack.dao.ValorDeEntradaDAO;
+import br.edu.ifam.underattack.dao.ValorDeEntradaDao;
 import br.edu.ifam.underattack.model.AlunoEncontraValorDeEntrada;
 import br.edu.ifam.underattack.model.ValorDeEntrada;
 import br.edu.ifam.underattack.model.enums.TipoValorEntrada;
 
 @Transactional
-public class JPAValorDeEntradaDAO implements ValorDeEntradaDAO {
+public class JPAValorDeEntradaDao implements ValorDeEntradaDao {
 
 	private final EntityManager manager;
 
 	@Inject
-	public JPAValorDeEntradaDAO(EntityManager manager) {
+	public JPAValorDeEntradaDao(EntityManager manager) {
 		this.manager = manager;
 	}
 
-	JPAValorDeEntradaDAO() {
+	JPAValorDeEntradaDao() {
 		this(null);
 	}
 

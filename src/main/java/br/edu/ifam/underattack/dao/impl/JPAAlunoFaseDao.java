@@ -7,20 +7,20 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-import br.edu.ifam.underattack.dao.AlunoFaseDAO;
+import br.edu.ifam.underattack.dao.AlunoFaseDao;
 import br.edu.ifam.underattack.model.AlunoParticipaFase;
 
 @Transactional
-public class JPAAlunoFaseDAO implements AlunoFaseDAO {
+public class JPAAlunoFaseDao implements AlunoFaseDao {
 
 	private final EntityManager manager;
 
 	@Inject
-	public JPAAlunoFaseDAO(EntityManager manager) {
+	public JPAAlunoFaseDao(EntityManager manager) {
 		this.manager = manager;
 	}
 
-	JPAAlunoFaseDAO() {
+	JPAAlunoFaseDao() {
 		this(null);
 	}
 

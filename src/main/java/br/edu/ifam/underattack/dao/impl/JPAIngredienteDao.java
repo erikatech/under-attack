@@ -7,22 +7,20 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
-import br.edu.ifam.underattack.dao.IngredienteDAO;
-import br.edu.ifam.underattack.model.ImagemIngrediente;
+import br.edu.ifam.underattack.dao.IngredienteDao;
 import br.edu.ifam.underattack.model.Ingrediente;
-import br.edu.ifam.underattack.model.enums.TipoImagemIngrediente;
 
 @Transactional
-public class JPAIngredienteDAO implements IngredienteDAO {
+public class JPAIngredienteDao implements IngredienteDao {
 
 	private final EntityManager manager;
 
 	@Inject
-	public JPAIngredienteDAO(EntityManager manager) {
+	public JPAIngredienteDao(EntityManager manager) {
 		this.manager = manager;
 	}
 
-	JPAIngredienteDAO() {
+	JPAIngredienteDao() {
 		this(null);
 	}
 
@@ -47,14 +45,4 @@ public class JPAIngredienteDAO implements IngredienteDAO {
 		return query.getSingleResult();
 	}
 	
-	@Override
-	public ImagemIngrediente buscarImagemPorTipo(Ingrediente ingrediente) {
-		TypedQuery<ImagemIngrediente> query = this.manager.createQuery(
-				"select im from Ingrediente i JOIN i.imagens im where i.id =:id and im.tipo=:tipo",
-				ImagemIngrediente.class);
-		query.setParameter("id", ingrediente.getId());
-		query.setParameter("tipo", TipoImagemIngrediente.CINZA);
-		return query.getSingleResult();
-	}
-
 }
