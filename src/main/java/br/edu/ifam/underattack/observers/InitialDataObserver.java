@@ -1,14 +1,15 @@
-package br.com.caelum.vraptor.observers;
+package br.edu.ifam.underattack.observers;
+
+import br.com.caelum.vraptor.events.VRaptorInitialized;
+import br.edu.ifam.underattack.model.Ingrediente;
+import br.edu.ifam.underattack.util.JPAUtil;
 
 import javax.enterprise.event.Observes;
 import javax.persistence.EntityManager;
-
-import br.com.caelum.vraptor.dao.ProdutoDao;
-import br.com.caelum.vraptor.dao.UsuarioDao;
-import br.com.caelum.vraptor.events.VRaptorInitialized;
-import br.com.caelum.vraptor.model.Produto;
-import br.com.caelum.vraptor.model.Usuario;
-import br.com.caelum.vraptor.util.JPAUtil;
+import javax.persistence.TypedQuery;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class InitialDataObserver {
 
@@ -19,20 +20,43 @@ public class InitialDataObserver {
 	 * sempre que a app é startada, pois estamos usando um banco
 	 * em memória. Você pode ler mais a respeito de observers em:
 	 *  
-	 * http://www.vraptor.org/pt/docs/eventos/
+	 * http://www.vraptor.org/pt/docs/eventos/*/
 
-	public void insert(@Observes VRaptorInitialized event) {
-		
+	public void prepare(@Observes VRaptorInitialized event) {
 		EntityManager em = JPAUtil.criaEntityManager();
-		em.getTransaction().begin();
+		TypedQuery<Ingrediente> query = em.createQuery(
+				"select i from Ingrediente i", Ingrediente.class);
+		List<Ingrediente> ingredientesToRemove = query.getResultList();
+		for(Ingrediente ingrediente : ingredientesToRemove){
+			em.getTransaction().begin();
+			em.remove(ingrediente);
+			em.getTransaction().commit();
+		}
 
-		em.persist(new Usuario("vraptor", "vraptor"));
-
-		em.persist(new Produto("DVD/Blu-ray Justin Bieber", 120.8, 2));
-		em.persist(new Produto("Carro de F1", 1.99, 5));
-		em.persist(new Produto("Livro da Casa do Código", 29.9, 10));
-		
-		em.getTransaction().commit();
+		List<Ingrediente> ingredientesToInsert = this.criaIngredientes();
+		for(Ingrediente ingrediente : ingredientesToInsert){
+			em.getTransaction().begin();
+			em.persist(ingrediente);
+			em.getTransaction().commit();
+		}
 		em.close();
-	}	*/
+	}
+
+	private List<Ingrediente> criaIngredientes() {
+		List<Ingrediente> ingredientes = new ArrayList<>();
+		Ingrediente cogumelo = new Ingrediente();
+		cogumelo.setDescricao("Mucho loco cogumelo");
+		cogumelo.setNomeImagem("cogumelo");
+
+		Ingrediente cabeloGoku = new Ingrediente();
+		cabeloGoku.setDescricao("Fio de cabelo do Goku");
+		cabeloGoku.setNomeImagem("cabelo-goku");
+
+		Ingrediente espada = new Ingrediente();
+		espada.setDescricao("Espada");
+		espada.setNomeImagem("espada");
+
+		ingredientes.addAll(Arrays.asList(cogumelo, cabeloGoku, espada));
+		return ingredientes;
+	}
 }
