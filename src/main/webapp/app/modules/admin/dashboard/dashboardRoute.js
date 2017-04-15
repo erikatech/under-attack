@@ -8,13 +8,13 @@
 	* Route for the admin module
 	*/
 
-angular.module('admin')
+angular.module('dashboard')
 	.config(['$stateProvider', function ($stateProvider) {
 		$stateProvider
-			.state('admin', {
-				templateUrl: 'app/modules/admin/admin.html',
-				url: "/admin",
-				controller: 'AdminCtrl',
-				controllerAs: '$adminCtrl'
+			.state('adminHome.dashboard', {
+				templateUrl: 'app/modules/admin/dashboard/dashboard.html',
+				url: "/dashboard",
+				controller: 'DashboardCtrl',
+				controllerAs: '$dashCtrl'
 			});
 	}]);

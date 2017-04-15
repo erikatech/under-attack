@@ -10,39 +10,14 @@
 	 */
 
   	angular
-		.module('admin')
-		.factory('adminService', AdminService);
+		.module('dashboard')
+		.factory('dashboardService', DashboardService);
 
-		AdminService.$inject = ['$http', '$q'];
+	DashboardService.$inject = ['$http', '$q'];
 
-		function AdminService ($http, $q) {
+		function DashboardService ($http, $q) {
 			return {
-				login: login,
-				register: register
+
 			};
-
-			function login(professor){
-				return $http.post("http://localhost:8080/under-attack/professor", professor)
-					.then(function (response) {
-						return $q.resolve(response);
-
-					})
-					.catch(function (errorResponse) {
-						return $q.reject(errorResponse);
-
-					})
-			}
-
-			function register(professor){
-				return $http.post("http://localhost:8080/under-attack/professor/register", professor)
-					.then(function (response) {
-						return $q.resolve(response);
-
-					})
-					.catch(function (errorResponse) {
-						return $q.reject(errorResponse);
-
-					})
-			}
 		}
 })();

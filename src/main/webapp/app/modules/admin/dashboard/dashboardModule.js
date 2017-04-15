@@ -3,11 +3,11 @@
 
 	/**
 	* @ngdoc function
-	* @name app.module:homeModule
+	* @name app.module:dashboardModule
 	* @description
-	* # homeModule
+	* # dashboardModule
 	* Module of the app
 	*/
 
-	angular.module('admin', []);
+	angular.module('dashboard', []);
 })();

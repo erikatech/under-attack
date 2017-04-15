@@ -3,36 +3,46 @@
 
 	/**
 	 * @ngdoc function
-	 * @name app.service:authService
+	 * @name app.service:adminService
 	 * @description
-	 * # authService
+	 * # adminService
 	 * Service of the app
 	 */
 
   	angular
-		.module('auth')
-		.factory('authService', Auth);
+		.module('admin')
+		.factory('adminService', AdminService);
 
-		Auth.$inject = ['$http', '$q'];
+		AdminService.$inject = ['$http', '$q'];
 
-		function Auth ($http, $q) {
-
+		function AdminService ($http, $q) {
 			return {
-				login: function(login, senha){
-					var data = {login: login, senha: senha};
-					return $http.post("http://localhost:8080/under-attack/professor", data)
-						.then(function (response) {
-							return $q.resolve(response);
+				login: login,
+				register: register
+			};
 
-						})
-						.catch(function (errorResponse) {
-							return $q.reject(errorResponse);
+			function login(professor){
+				return $http.post("http://localhost:8080/under-attack/professor", professor)
+					.then(function (response) {
+						return $q.resolve(response);
 
-						})
-				}
+					})
+					.catch(function (errorResponse) {
+						return $q.reject(errorResponse);
+
+					})
 			}
 
+			function register(professor){
+				return $http.post("http://localhost:8080/under-attack/professor/register", professor)
+					.then(function (response) {
+						return $q.resolve(response);
 
+					})
+					.catch(function (errorResponse) {
+						return $q.reject(errorResponse);
 
+					})
+			}
 		}
 })();

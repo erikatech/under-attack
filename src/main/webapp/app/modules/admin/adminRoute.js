@@ -11,8 +11,14 @@
 angular.module('admin')
 	.config(['$stateProvider', function ($stateProvider) {
 		$stateProvider
-			.state('admin', {
+			.state('adminHome', {
+				url: '',
+				abstract: true,
+				templateUrl: 'app/modules/admin/admin-home.html'
+			})
+			.state('adminHome.login', {
 				templateUrl: 'app/modules/admin/admin.html',
+				url: "/admin",
 				controller: 'AdminCtrl',
 				controllerAs: '$adminCtrl'
 			});

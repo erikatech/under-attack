@@ -9,5 +9,5 @@
 	* Module of the app
 	*/
 
-	angular.module('admin', []);
+	angular.module('admin', ['dashboard']);
 })();

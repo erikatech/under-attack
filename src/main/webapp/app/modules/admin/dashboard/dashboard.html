@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div layout="column" flex layout-padding>
+	<div layout="row" flex>
+		<span flex="80">
+			FASE 1
+		</span>
+		<span>
+			<md-button ng-click="$adminCtrl.configuraFaseTestadores()">CONFIGURAR</md-button>
+		</span>
+	</div>
+
+	<div layout="row" flex>
+		<span flex="80">
+			FASE 2
+		</span>
+		<span>
+			<md-button ng-click="$adminCtrl.configuraFaseDesenvolvedores()">CONFIGURAR</md-button>
+		</span>
+	</div>
+</div>
