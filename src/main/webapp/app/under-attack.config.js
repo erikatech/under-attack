@@ -11,21 +11,23 @@
 	angular
 		.module('under-attack')
 		.config(configure)
-		.run(runBlock);
-	configure.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
-	function configure($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+		.config(configureLoadingBar);
+		// .run(runBlock);
+
+	configure.$inject = ['$urlRouterProvider', '$locationProvider', '$httpProvider'];
+	function configure($urlRouterProvider, $locationProvider, $httpProvider) {
 		$locationProvider.hashPrefix('!');
-		// This is required for Browser Sync to work poperly
 		$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 		$urlRouterProvider.otherwise('/');
-
 	}
-	runBlock.$inject = ['$rootScope'];
 
+	configureLoadingBar.$inject = ['cfpLoadingBarProvider'];
+	function configureLoadingBar(cfpLoadingBarProvider){
+		cfpLoadingBarProvider.includeSpinner = false;
+	}
+	/*runBlock.$inject = ['$rootScope'];
 	function runBlock($rootScope) {
 		'use strict';
 		console.log('AngularJS run() function...');
-	}
-
-
+	}*/
 })();
