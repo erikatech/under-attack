@@ -41,5 +41,14 @@ public interface ProfessorDao {
 	 * @param senha
 	 * @return
 	 */
-	Professor consulta(String login, String senha) throws NoResultException;
+	Professor consulta(String login, String senha);
+
+	/**
+	 * Consulta um professor por login
+	 * @param login
+	 * @return
+	 */
+	Professor findByLogin(String login);
+
+
 }

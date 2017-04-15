@@ -43,18 +43,33 @@ public class JPAProfessorDao implements ProfessorDao {
 	}
 
 	@Override
-	public Professor consulta(String login, String senha) throws NoResultException{
+	public Professor consulta(String login, String senha){
 		try {
 			TypedQuery<Professor> query = this.manager
 					.createQuery(
-							"select p from Professor p where (p.login =:login OR p.email=:login) and p.senha=:senha",
+							"select p from Professor p where p.login =:login and p.senha=:senha",
 							Professor.class);
 			query.setParameter("login", login);
 			query.setParameter("senha", senha);
 			return query.getSingleResult();
 		} catch (NoResultException e) {
 			e.printStackTrace();
-			throw new NoResultException("Login ou senha inválidos");
 		}
+		return null;
+	}
+
+	@Override
+	public Professor findByLogin(String login) {
+		try {
+			TypedQuery<Professor> query = this.manager
+					.createQuery(
+							"select p from Professor p where p.login =:login",
+							Professor.class);
+			query.setParameter("login", login);
+			return query.getSingleResult();
+		} catch (NoResultException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
