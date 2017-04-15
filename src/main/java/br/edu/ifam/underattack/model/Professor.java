@@ -27,10 +27,6 @@ public class Professor implements Serializable {
 	private String login;
 
 	@NotNull(message = "{campo.obrigatorio}")
-	@Email
-	private String email;
-
-	@NotNull(message = "{campo.obrigatorio}")
 	private String senha;
 
 	public Long getId() {
@@ -41,11 +37,19 @@ public class Professor implements Serializable {
 		return login;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
 	public String getSenha() {
 		return senha;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 }
