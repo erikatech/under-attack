@@ -11,11 +11,24 @@
 
   	angular
 		.module('auth')
-		.factory('AuthService', Auth);
+		.factory('authService', Auth);
 
-		Auth.$inject = [];
+		Auth.$inject = ['$http', '$q'];
 
-		function Auth () {
+		function Auth ($http, $q) {
+			return {
+				login: function(login, senha){
+					var data = {login: login, senha: senha};
+					return $http.post("http://localhost:8080/under-attack/professor", data)
+						.then(function (response) {
+							return $q.resolve(response);
 
+						})
+						.catch(function (errorResponse) {
+							return $q.reject(errorResponse);
+
+						})
+				}
+			}
 		}
 })();
