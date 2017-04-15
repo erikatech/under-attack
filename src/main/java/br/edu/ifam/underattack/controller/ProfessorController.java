@@ -1,11 +1,11 @@
 package br.edu.ifam.underattack.controller;
 
-import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Post;
-import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.*;
+import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.com.caelum.vraptor.validator.I18nMessage;
+import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
+import br.com.caelum.vraptor.view.Results;
 import br.edu.ifam.underattack.dao.ProfessorDao;
 import br.edu.ifam.underattack.interceptor.annotations.BugsEncontrados;
 import br.edu.ifam.underattack.interceptor.annotations.Public;
@@ -13,10 +13,12 @@ import br.edu.ifam.underattack.model.Aluno;
 import br.edu.ifam.underattack.model.Professor;
 import br.edu.ifam.underattack.model.repository.ProfessorRepository;
 
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
 @Controller
+@Path("/professor")
 public class ProfessorController {
 
 	private final Result result;
@@ -39,22 +41,29 @@ public class ProfessorController {
 	}
 
 	@Public
-	@Post
+	@Consumes(value = "application/json", options = WithoutRoot.class)
+	@Post("/register")
 	public void adiciona(Professor professor) {
 		dao.adiciona(professor);
-		result.include("sucesso", "Professor cadastrado com sucesso");
+		result.use(Results.status()).ok();
 	}
 
 	@Public
-	@Post("/admin-login")
-	public void login(String login, String senha) throws NoResultException{
-		dao.consulta(login, senha);
-		/*validator.addIf(professorConsultado == null, new I18nMessage("login", "login.senha.invalidos"));
+	@Consumes(value = "application/json")
+	@Post("")
+	public void login(String login, String senha) {
+		Professor professor = dao.consulta(login, senha);
+		validator.addIf(professor == null, new SimpleMessage("invalid", "Login ou senha inválidos"));
+		validator.onErrorSendBadRequest();
+		result.use(Results.status()).ok();
+	}
 
-		validator.onErrorUsePageOf(this).login();*/
-
-//		alunoInfo.login(alunoConsultado);
-//		result.redirectTo(this).home();
+	@Public
+	@Get("")
+	public void check(String login) {
+		Professor professor = dao.findByLogin(login);
+		boolean isLoginAvailable = professor == null;
+		result.use(Results.json()).from(isLoginAvailable).serialize();
 	}
 
 }

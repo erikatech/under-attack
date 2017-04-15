@@ -3,10 +3,7 @@ package br.edu.ifam.underattack.controller;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Post;
-import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.*;
 import br.com.caelum.vraptor.validator.I18nMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import br.edu.ifam.underattack.interceptor.annotations.BugsEncontrados;
@@ -16,6 +13,7 @@ import br.edu.ifam.underattack.model.repository.FrascoRepository;
 import br.edu.ifam.underattack.model.repository.TurmaRepository;
 
 @Controller
+@Path("/aluno")
 public class AlunoController {
 
 	private TurmaRepository turma;
