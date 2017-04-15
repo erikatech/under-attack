@@ -10,7 +10,7 @@
 	 */
 
   	angular
-		.module('customToast')
+		.module('under-attack')
 		.factory('CustomToastService', CustomToastService);
 
 		CustomToastService.$inject = ['$mdToast'];
