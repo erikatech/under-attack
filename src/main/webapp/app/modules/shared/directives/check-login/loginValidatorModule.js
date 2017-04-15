@@ -3,12 +3,12 @@
 
 	/**
 	 * @ngdoc function
-	 * @name app.module:authModule
+	 * @name app.module:loginValidator
 	 * @description
-	 * # authModule
+	 * # loginValidator
 	 * Module of the app
 	 */
 
-  	angular.module('auth', [])
+  	angular.module('login-validator', [])
 
 })();

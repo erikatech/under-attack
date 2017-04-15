@@ -1,19 +1,30 @@
 (function () {
 
-	angular.module("supplychain-web")
-		.directive("dateValidator", dateValidator);
+	angular.module("login-validator")
+		.directive("loginValidator", loginValidator);
 
-	function dateValidator() {
+	loginValidator.$inject = ['loginService'];
+
+	function loginValidator(loginService) {
 		return {
 			restrict: 'A',
 			require: 'ngModel',
-			link: function(scope, element, attrs, ngModel){
-				element.bind('blur', function (e) {
-					if (!ngModel || element.val() === "__/__/____") return;
-					var isDateValid = moment(element.val(), "DD-MM-YYYY").isValid();
-					ngModel.$setValidity('invalid-date', isDateValid);
+			link: link
+		};
+
+		function link(scope, element, attrs, ngModel){
+				element.bind('blur', function () {
+					// Validando se o campo está vazio
+					if (!ngModel || element.val() === "") return;
+					loginService.checkLoginAvailability(attrs.loginValidator, element.val())
+						.then(function (successResponse) {
+							var isLoginAvailable = successResponse.data.boolean;
+							ngModel.$setValidity('unavailable', isLoginAvailable);
+						})
+						.catch(function (errorResponse) {
+							console.log("[loginValidator] >>> ", errorResponse);
+						})
 				});
-			}
 		}
 	}
 })();

@@ -3,32 +3,38 @@
 
 	/**
 	 * @ngdoc function
-	 * @name app.service:authService
+	 * @name app.service:loginService
 	 * @description
-	 * # authService
+	 * # loginService
 	 * Service of the app
 	 */
 
   	angular
-		.module('auth')
-		.factory('authService', Auth);
+		.module('login-validator')
+		.factory('loginService', Login);
 
-		Auth.$inject = ['$http', '$q'];
+		Login.$inject = ['$http', '$q'];
 
-		function Auth ($http, $q) {
+		function Login ($http, $q) {
 			return {
-				login: function(login, senha){
-					var data = {login: login, senha: senha};
-					return $http.post("http://localhost:8080/under-attack/professor", data)
-						.then(function (response) {
-							return $q.resolve(response);
+				checkLoginAvailability: checkLoginAvailability
+			};
 
-						})
-						.catch(function (errorResponse) {
-							return $q.reject(errorResponse);
-
-						})
-				}
+			/**
+			 * Serviço que checa se o login do usuário está disponível
+			 * @param endPoint
+			 * @param login
+			 * @returns {*}
+			 */
+			function checkLoginAvailability(endPoint, login){
+				var finalEndpoint = endPoint + "?login="+login;
+				return $http.get(finalEndpoint)
+					.then(function (response) {
+						return $q.resolve(response);
+					})
+					.catch(function (errorResponse) {
+						return $q.reject(errorResponse);
+					})
 			}
 		}
 })();
