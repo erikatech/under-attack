@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>br.com.caelum</groupId>
 			<artifactId>vraptor</artifactId>
-			<version>4.0.0.Final</version>
+			<version>4.2.0-RC5</version>
 		</dependency>
 		
 <!-- 		<dependency> -->
@@ -134,6 +134,13 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+		</dependency>
+
+		<!-- CORS FILTER -->
+		<dependency>
+			<groupId>com.thetransactioncompany</groupId>
+			<artifactId>cors-filter</artifactId>
+			<version>2.4</version>
 		</dependency>
 
 	</dependencies>
