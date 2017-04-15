@@ -13,8 +13,13 @@
 	angular.module('under-attack', [
 		'ngResource',
 		'ngAria',
+		'ngAnimate',
 		'ngMaterial',
+		'ngMessages',
 		'ui.router',
+		'angular-loading-bar',
+
+		'login-validator',
 		'admin',
 		'auth'
 	]);
